@@ -3,7 +3,7 @@
   var date = new Date();
   date.setMonth(date.getMonth()-1)
   var base='https://api.github.com/repos/coderdojo/community-platform/issues?';
-  var completed=base+'state=closed&since='+date;
+  var completed=base+'labels=in+progress&state=closed&since='+date;
   var upcoming=base+'labels=in+progress';
 
   var getHttpClient = function() {
