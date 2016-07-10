@@ -34,7 +34,7 @@
     var parsed = JSON.parse(response);
     for(var i=0; i<parsed.length; i++){
       var item = document.createElement("li");
-      if(parsed[i].labels[0].name === 'duplicate'){
+      if(parsed[i].labels[0].name != 'duplicate'){
         item.innerHTML = '<span class="glyphicon glyphicon-ok-sign green" aria-hidden="true"></span><a href='+parsed[i].html_url+'>'+parsed[i].title+'</a>';
         items.appendChild(item);
       }
