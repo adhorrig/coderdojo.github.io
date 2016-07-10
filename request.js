@@ -3,7 +3,7 @@
   var date = new Date();
   date.setMonth(date.getMonth()-1)
   var base='https://api.github.com/repos/coderdojo/community-platform/issues?';
-  var completed=base+'labels=in+progress&state=closed&since='+date;
+  var completed=base+'state=closed&since='+date;
   var upcoming=base+'labels=in+progress';
 
   var getHttpClient = function() {
@@ -34,8 +34,10 @@
     var parsed = JSON.parse(response);
     for(var i=0; i<parsed.length; i++){
       var item = document.createElement("li");
-      item.innerHTML = '<span class="glyphicon glyphicon-ok-sign green" aria-hidden="true"></span><a href='+parsed[i].html_url+'>'+parsed[i].title+'</a>';
-      items.appendChild(item);
+      if(parsed[i].labels[0].name === 'duplicate'){
+        item.innerHTML = '<span class="glyphicon glyphicon-ok-sign green" aria-hidden="true"></span><a href='+parsed[i].html_url+'>'+parsed[i].title+'</a>';
+        items.appendChild(item);
+      }
     }
   })
 })();
